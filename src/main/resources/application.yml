@@ -1,0 +1,27 @@
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create #for production - update
+  datasource:
+    url: jdbc:hsqldb:mem:exchange-rates-db #jdbc:hsqldb:file:db/exchange-rates-db
+    username: admin
+    password:
+
+exchange-rates-monitor:
+  nbp:
+    date-format: yyyy-MM-dd
+    query:
+      start-date-param: '{startDate}'
+      end-date-param: '{endDate}'
+      max-days-per-request: 93
+      usd-rates-for-today: http://api.nbp.pl/api/exchangerates/rates/a/usd/
+      usd-rates-for-period: http://api.nbp.pl/api/exchangerates/rates/a/usd/${exchange-rates-monitor.nbp.query.start-date-param}/${exchange-rates-monitor.nbp.query.end-date-param}/?format=json
+      start-date: 2017-01-01
+
