@@ -8,9 +8,9 @@ spring:
   jpa:
     show-sql: false
     hibernate:
-      ddl-auto: create #for production - update
+      ddl-auto: update
   datasource:
-    url: jdbc:hsqldb:mem:exchange-rates-db #jdbc:hsqldb:file:db/exchange-rates-db
+    url: jdbc:hsqldb:file:db/exchange-rates-db
     username: admin
     password:
 

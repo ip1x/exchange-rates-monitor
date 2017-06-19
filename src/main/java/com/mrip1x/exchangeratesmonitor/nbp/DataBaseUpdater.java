@@ -35,14 +35,14 @@ public class DataBaseUpdater {
      */
     @Scheduled(cron = "0 15 * * * *")
     public void updateTodayRate() {
-        log.info("updateTodayRate: updating today rate from NBP API ({})");
+        log.info("updateTodayRate: updating today rate from NBP API");
         List<ExchangeRate> savedRates = exchangeRateService.saveAll(exchangeRateConverter.convert(nbpService.getTodayRate()));
         log.info("updateTodayRate: number of updated rows = " + savedRates.size());
     }
 
     @Transactional
     public void updateDataBase() {
-        log.info("updateDataBase: updating data base with data from NBP API ({})");
+        log.info("updateDataBase: updating data base with data from NBP API");
         int updatedRows = 0;
         for (NbpResponse response : nbpService.getRatesTillToday()) {
             List<ExchangeRate> rates = exchangeRateService.saveAll(exchangeRateConverter.convert(response));
